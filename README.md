@@ -27,7 +27,24 @@ Welcome to the **Data Warehouse & Analytics Project** 🚀 — an end-to-end DWH
 
 ## 🏗️ Data Architecture
 
-![Data Architecture](docs/data_architecture.png)
+The DWH follows a **Medallion architecture** — data flows through three layers, each with a clear purpose:
+
+~~~mermaid
+flowchart LR
+    A["📁 Sources<br/>CRM + ERP CSVs"] --> B["🟫 Bronze<br/>Raw tables"]
+    B --> C["⬜ Silver<br/>Cleansed & standardized"]
+    C --> D["🟨 Gold<br/>Star schema views"]
+    D --> E["📊 BI / Analytics<br/>Reports & ML"]
+
+    classDef bronze fill:#cd7f32,stroke:#333,color:#fff
+    classDef silver fill:#c0c0c0,stroke:#333,color:#000
+    classDef gold fill:#ffd700,stroke:#333,color:#000
+    class B bronze
+    class C silver
+    class D gold
+~~~
+
+> 💡 Editable diagram source: [`docs/data_architecture.drawio`](docs/data_architecture.drawio)
 
 | Layer | Purpose | Storage |
 |---|---|---|
